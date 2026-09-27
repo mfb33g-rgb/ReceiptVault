@@ -22,8 +22,8 @@ jobs:
 
       - name: Install Android SDK
         run: |
-          yes | sdkmanager --licenses >/dev/null || true
-          sdkmanager "platforms;android-35" "build-tools;35.0.0"
+          yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses >/dev/null || true
+          /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-35" "build-tools;35.0.0" "platform-tools"
 
       - uses: gradle/actions/setup-gradle@v4
         with:
@@ -37,3 +37,4 @@ jobs:
         with:
           name: ReceiptVault-APK
           path: buildsrc/ReceiptVaultAndroid/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
